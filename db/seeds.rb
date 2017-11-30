@@ -10,14 +10,18 @@ users = User.create([{
   password: "1234567890",
   role: "admin"
   },
- {
-  email: "niki@gmail.com",
-  password: "123456",
-  role: "user"
- },
+ # {
+ #  email: "niki@gmail.com",
+ #  password: "123456",
+ #  role: "user"
+ # },
  {
   email: "kai@gmail.com",
   password: "123456",
   role: "author"
  }
   ])
+
+# user = User.where(role: 'author').first
+
+# Article.all.map{|a| a.update_attributes(user_id: user)}

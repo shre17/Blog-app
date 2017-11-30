@@ -22,7 +22,6 @@ end
 
 def create
   @article = Article.new(article_params)
- 
   if @article.save
     redirect_to admins_article_path(@article)
   else
@@ -32,9 +31,16 @@ end
 
 def update
   @article = Article.find(params[:id])
- 
+
   if @article.update(article_params)
-    redirect_to admins_article_path(@article)
+    if @article.is_published
+      @user = User.find_by(role: "author")
+      AuthorMailer.article_is_published(@article, @user).deliver_now
+    else
+       @user = User.find_by(role: "author")
+      AuthorMailer.article_is_not_published(@article, @user).deliver_now
+   end
+   redirect_to admins_article_path(@article)
   else
     render 'edit'
   end

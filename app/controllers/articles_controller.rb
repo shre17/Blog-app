@@ -27,7 +27,10 @@ end
 def create
   @article = Article.new(article_params)
   if @article.save
-     redirect_to @article
+    AuthorMailer.new_article(@article, @article.user).deliver_now
+    @user = User.find_by(role: "admin")
+    AuthorMailer.new_article_notification(@user, @article, @article.user).deliver_now
+    redirect_to @article
   else
     render 'new'
   end
@@ -62,7 +65,7 @@ end
 
 private
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :user_id)
   end
 
 

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello Admin User, <%= @user.try(:email)%></h1>
+    <p>
+      <%= @author.try(:email)%> has submitted an article <strong><%= @article.title %></strong>. Please have a look on it.
+    </p>
+  </body>
+</html>

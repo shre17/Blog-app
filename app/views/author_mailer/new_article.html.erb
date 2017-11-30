@@ -6,8 +6,7 @@
   <body>
     <h1>Welcome to example.com, <%= @user.try(:email)%></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @article.try(:login) %>.<br>
+      Your article <strong><%= @article.title %></strong> has been submitted successfully. This will be published after review. We will back to you soon.
     </p>
     <p>
       To login to the site, just follow this link: <%= @url %>.
